@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sophia Cheng — Strategy, Design & Analytics</title>
+<meta name="description" content="Sophia Cheng — working at the intersection of strategy, design, and analytics to create sustainable growth for products and people.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%231A1917'/><text x='16' y='23' font-size='20' font-family='Georgia,serif' font-style='italic' fill='%23F3EFE6' text-anchor='middle'>s</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F3EFE6;
+  --paper-2:#EDE8DC;
+  --ink:#1A1917;
+  --ink-2:#4B473F;
+  --ink-3:#8A8478;
+  --line:#D8D2C4;
+  --accent:#B5442E;         /* muted terracotta */
+  --serif:'Fraunces',Georgia,'Times New Roman',serif;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none;}
+::selection{background:var(--ink);color:var(--paper);}
+
+/* film-grain / paper texture */
+body::before{
+  content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.wrap{max-width:1240px;margin:0 auto;padding:0 40px;position:relative;z-index:2;}
+
+/* ---------- Nav ---------- */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:40;
+  mix-blend-mode:normal;
+}
+.nav-inner{
+  max-width:1240px;margin:0 auto;padding:26px 40px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-name{font-family:var(--serif);font-size:20px;font-weight:500;letter-spacing:-.01em;}
+.nav-name em{font-style:italic;color:var(--accent);}
+.nav-links{display:flex;gap:28px;}
+.nav-links a{
+  font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink-2);position:relative;padding-bottom:2px;
+}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease);}
+.nav-links a:hover{color:var(--ink);}
+.nav-links a:hover::after{transform:scaleX(1);transform-origin:left;}
+
+/* ---------- Hero ---------- */
+.hero{padding:200px 0 120px;}
+.hero .meta{
+  display:flex;align-items:center;gap:12px;
+  font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);
+  margin-bottom:44px;
+}
+.hero .meta .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);position:relative;}
+.hero .meta .dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1px solid var(--accent);opacity:.5;animation:pulse 2.4s var(--ease) infinite;}
+@keyframes pulse{0%{transform:scale(.6);opacity:.6;}100%{transform:scale(1.9);opacity:0;}}
+.hero h1{
+  font-family:var(--serif);
+  font-weight:340;
+  font-size:clamp(46px,8.4vw,120px);
+  line-height:.98;
+  letter-spacing:-.03em;
+}
+.hero h1 em{font-style:italic;color:var(--accent);font-weight:360;}
+.hero .lede{
+  margin-top:48px;max-width:640px;
+  font-size:clamp(20px,2.5vw,27px);line-height:1.4;color:var(--ink-2);
+  font-weight:400;letter-spacing:-.01em;
+}
+.hero .sub{
+  margin-top:36px;font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;color:var(--ink-3);
+  display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+}
+.hero .sub .sep{opacity:.5;}
+
+/* ---------- Section head ---------- */
+.section{padding:80px 0;border-top:1px solid var(--line);}
+.sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:56px;}
+.sec-head .idx{font-family:var(--mono);font-size:12px;color:var(--ink-3);letter-spacing:.08em;}
+.sec-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(24px,3vw,34px);letter-spacing:-.02em;}
+
+/* ---------- Projects list ---------- */
+.projects{border-top:1px solid var(--line);}
+.project{
+  display:grid;grid-template-columns:60px 1.1fr 1.4fr auto;align-items:center;gap:28px;
+  padding:38px 8px;border-bottom:1px solid var(--line);
+  position:relative;transition:padding .5s var(--ease);
+}
+.project::before{content:"";position:absolute;inset:0;background:var(--ink);transform:scaleY(0);transform-origin:bottom;transition:transform .5s var(--ease);z-index:-1;}
+.project .num{font-family:var(--mono);font-size:13px;color:var(--ink-3);transition:color .5s var(--ease);}
+.project .title{font-family:var(--serif);font-size:clamp(30px,4.4vw,52px);font-weight:400;letter-spacing:-.02em;line-height:1;transition:color .5s var(--ease),transform .5s var(--ease);}
+.project .title em{font-style:italic;}
+.project .desc{color:var(--ink-2);font-size:15.5px;line-height:1.5;max-width:420px;transition:color .5s var(--ease);}
+.project .cat{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px;transition:color .5s var(--ease);}
+.project .go{
+  display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink-2);white-space:nowrap;transition:color .5s var(--ease);
+}
+.project .go .arw{display:inline-block;transition:transform .45s var(--ease);}
+.project:hover{padding-left:26px;padding-right:26px;}
+.project:hover::before{transform:scaleY(1);transform-origin:top;}
+.project:hover .num,.project:hover .title,.project:hover .desc,.project:hover .cat,.project:hover .go{color:var(--paper);}
+.project:hover .cat{color:var(--paper);opacity:.65;}
+.project:hover .title{transform:translateX(6px);}
+.project:hover .go .arw{transform:translate(4px,-4px);}
+
+/* floating cursor preview */
+.preview{
+  position:fixed;top:0;left:0;z-index:60;width:300px;height:210px;border-radius:10px;overflow:hidden;
+  pointer-events:none;opacity:0;transform:translate(-50%,-50%) scale(.85);
+  transition:opacity .35s var(--ease),transform .35s var(--ease);
+  box-shadow:0 30px 60px rgba(26,25,23,.28);will-change:transform;
+}
+.preview.show{opacity:1;}
+.preview .pane{position:absolute;inset:0;opacity:0;display:flex;align-items:center;justify-content:center;transition:opacity .3s var(--ease);}
+.preview .pane.active{opacity:1;}
+.preview .glyph{font-size:74px;filter:drop-shadow(0 8px 18px rgba(0,0,0,.25));}
+.pane.cadence{background:linear-gradient(135deg,#5B6CF0,#9A6BE8);}
+.pane.vital{background:linear-gradient(135deg,#0E9E9C,#37B98A);}
+.pane.rewards{background:linear-gradient(135deg,#C9503C,#8C2F45);}
+
+/* ---------- Career ---------- */
+.career-list{border-top:1px solid var(--line);}
+.career-row{
+  display:grid;grid-template-columns:34px 1fr 1.3fr auto;align-items:baseline;gap:24px;
+  padding:30px 8px;border-bottom:1px solid var(--line);position:relative;transition:padding .5s var(--ease);
+}
+.career-row:hover{padding-left:20px;}
+.career-row .cbadge{
+  width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-weight:600;font-size:13px;color:#fff;align-self:center;letter-spacing:-.01em;
+}
+.career-row .company{font-family:var(--serif);font-size:clamp(21px,2.6vw,30px);font-weight:400;letter-spacing:-.015em;}
+.career-row .role{color:var(--ink-2);font-size:15.5px;line-height:1.4;}
+.career-row .yr{font-family:var(--mono);font-size:13px;color:var(--ink-3);text-align:right;white-space:nowrap;}
+
+/* ---------- Contact ---------- */
+.contact{padding:120px 0 90px;border-top:1px solid var(--line);}
+.contact .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-bottom:30px;}
+.contact h2{font-family:var(--serif);font-weight:340;font-size:clamp(40px,7vw,96px);line-height:.98;letter-spacing:-.03em;}
+.contact h2 em{font-style:italic;color:var(--accent);}
+.contact .links{margin-top:52px;display:flex;gap:14px;flex-wrap:wrap;}
+.contact .links a{
+  font-family:var(--mono);font-size:13px;letter-spacing:.04em;padding:14px 22px;border:1px solid var(--line);border-radius:999px;
+  display:inline-flex;align-items:center;gap:9px;transition:.35s var(--ease);color:var(--ink);
+}
+.contact .links a:hover{background:var(--ink);color:var(--paper);border-color:var(--ink);transform:translateY(-2px);}
+.contact .links a .arw{transition:transform .4s var(--ease);}
+.contact .links a:hover .arw{transform:translate(3px,-3px);}
+
+/* ---------- Footer ---------- */
+.foot{padding:36px 0 48px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;color:var(--ink-3);text-transform:uppercase;}
+
+/* ---------- Reveal animation ---------- */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity 1s var(--ease),transform 1s var(--ease);}
+.reveal.in{opacity:1;transform:none;}
+
+@media(max-width:860px){
+  .wrap{padding:0 24px;}
+  .nav-inner{padding:20px 24px;}
+  .nav-links{gap:18px;}
+  .hero{padding:150px 0 80px;}
+  .project{grid-template-columns:34px 1fr;gap:6px 16px;padding:28px 6px;}
+  .project .num{grid-row:1;}
+  .project .titlewrap{grid-column:2;}
+  .project .descwrap{grid-column:2;margin-top:14px;}
+  .project .go{grid-column:2;margin-top:16px;}
+  .project:hover{padding-left:14px;padding-right:14px;}
+  .career-row{grid-template-columns:30px 1fr;gap:4px 14px;padding:24px 6px;}
+  .career-row .cbadge{align-self:start;margin-top:4px;}
+  .career-row .role{grid-column:2;margin-top:6px;}
+  .career-row .yr{grid-column:2;text-align:left;margin-top:8px;}
+  .preview{display:none;}
+}
+@media(max-width:560px){
+  .nav-links a:not(.nav-cta){display:none;}
+}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none;}
+  .hero .meta .dot::after{animation:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- floating project preview -->
+<div class="preview" id="preview">
+  <div class="pane cadence" data-key="cadence"><span class="glyph">🗓️</span></div>
+  <div class="pane vital" data-key="vital"><span class="glyph">💤</span></div>
+  <div class="pane rewards" data-key="rewards"><span class="glyph">💳</span></div>
+</div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-name" href="#top">Sophia <em>Cheng</em></a>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#career">Career</a>
+      <a class="nav-cta" href="#contact">Connect</a>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+
+  <!-- HERO -->
+  <header class="hero wrap">
+    <div class="meta reveal"><span class="dot"></span> Product · Strategy · Design · Analytics</div>
+    <h1 class="reveal">Strategy, design<br>&amp; analytics for<br><em>sustainable growth.</em></h1>
+    <p class="lede reveal">
+      Passionate about the intersection of strategy, design, and analytics to create sustainable growth for products and people.
+    </p>
+    <div class="sub reveal">
+      <span>Sophia Cheng</span><span class="sep">/</span>
+      <span>Product &amp; Pricing Strategy</span><span class="sep">/</span>
+      <span>Available for what's next</span>
+    </div>
+  </header>
+
+  <!-- WORK -->
+  <section class="section wrap" id="work">
+    <div class="sec-head reveal">
+      <span class="idx">(01)</span>
+      <h2>Selected Work</h2>
+    </div>
+
+    <div class="projects">
+
+      <a class="project reveal" href="https://cadence-to-dos.vercel.app/" target="_blank" rel="noopener" data-preview="cadence">
+        <span class="num">01</span>
+        <div class="titlewrap"><span class="title">Cadence</span></div>
+        <div class="descwrap">
+          <span class="cat">Productivity</span>
+          <p class="desc">Your calendar, your way — a personalized calendar and to-do experience that adapts to how you plan, prioritize, and get things done.</p>
+        </div>
+        <span class="go">Live <span class="arw">↗</span></span>
+      </a>
+
+      <a class="project reveal" href="https://vital-biohacking.vercel.app/" target="_blank" rel="noopener" data-preview="vital">
+        <span class="num">02</span>
+        <div class="titlewrap"><span class="title">Vital</span></div>
+        <div class="descwrap">
+          <span class="cat">Health &amp; Wellness</span>
+          <p class="desc">Sync Apple Health &amp; Oura for sleep, activity, and recovery — one unified dashboard for HRV, resting heart rate, readiness, and daily highlights.</p>
+        </div>
+        <span class="go">Live <span class="arw">↗</span></span>
+      </a>
+
+      <a class="project reveal" href="https://rewards-pointstracker.vercel.app/" target="_blank" rel="noopener" data-preview="rewards">
+        <span class="num">03</span>
+        <div class="titlewrap"><span class="title">Rewards</span></div>
+        <div class="descwrap">
+          <span class="cat">Personal Finance</span>
+          <p class="desc">Cards, miles &amp; points — explore and compare credit cards, airline miles, and hotel loyalty programs to track and optimize every reward.</p>
+        </div>
+        <span class="go">Live <span class="arw">↗</span></span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- CAREER -->
+  <section class="section wrap" id="career">
+    <div class="sec-head reveal">
+      <span class="idx">(02)</span>
+      <h2>Career</h2>
+    </div>
+
+    <div class="career-list">
+
+      <div class="career-row reveal">
+        <span class="cbadge" style="background:#00A1E0;">sf</span>
+        <span class="company">Salesforce</span>
+        <span class="role">Product &amp; Pricing Strategy</span>
+        <span class="yr">2024 — 2026</span>
+      </div>
+
+      <div class="career-row reveal">
+        <span class="cbadge" style="background:#B41E1E;">B</span>
+        <span class="company">Bain &amp; Company</span>
+        <span class="role">Pricing &amp; Commercial Excellence Expert Consultant</span>
+        <span class="yr">2022 — 2024</span>
+      </div>
+
+      <div class="career-row reveal">
+        <span class="cbadge" style="background:#00263A;">SK</span>
+        <span class="company">Simon-Kucher</span>
+        <span class="role">Growth Strategy Manager</span>
+        <span class="yr">2019 — 2022</span>
+      </div>
+
+      <div class="career-row reveal">
+        <span class="cbadge" style="background:#941633;">CMU</span>
+        <span class="company">Carnegie Mellon</span>
+        <span class="role">B.S. Business Administration &amp; Decision Science</span>
+        <span class="yr">—</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact wrap" id="contact">
+    <div class="kicker reveal">(03) — Get in touch</div>
+    <h2 class="reveal">Let's build something<br>that <em>lasts.</em></h2>
+    <div class="links reveal">
+      <a href="mailto:sophiacheng.cmu@gmail.com">Email <span class="arw">↗</span></a>
+      <a href="https://www.linkedin.com/in/sophiazcheng/" target="_blank" rel="noopener">LinkedIn <span class="arw">↗</span></a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot wrap">
+  <span>© 2026 Sophia Cheng</span>
+  <span>Strategy · Design · Analytics</span>
+</footer>
+
+<script>
+// ---- Scroll reveal ----
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});return;}
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}
+    });
+  },{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(e,i){e.style.transitionDelay=(Math.min(i,6)*0.05)+'s';io.observe(e);});
+})();
+
+// ---- Floating cursor preview over project rows ----
+(function(){
+  var fine = window.matchMedia('(pointer:fine)').matches;
+  if(!fine) return;
+  var preview = document.getElementById('preview');
+  var panes = preview.querySelectorAll('.pane');
+  var rows = document.querySelectorAll('.project');
+  var tx=0,ty=0,cx=0,cy=0,raf=null;
+  function loop(){
+    cx += (tx-cx)*0.16; cy += (ty-cy)*0.16;
+    preview.style.transform='translate('+ (cx-150) +'px,'+ (cy-105) +'px) scale(1)';
+    raf=requestAnimationFrame(loop);
+  }
+  function setPane(key){
+    panes.forEach(function(p){p.classList.toggle('active',p.dataset.key===key);});
+  }
+  rows.forEach(function(row){
+    row.addEventListener('mouseenter',function(){
+      setPane(row.dataset.preview);
+      preview.classList.add('show');
+      if(!raf) loop();
+    });
+    row.addEventListener('mousemove',function(e){ tx=e.clientX; ty=e.clientY; });
+    row.addEventListener('mouseleave',function(){
+      preview.classList.remove('show');
+      if(raf){cancelAnimationFrame(raf);raf=null;}
+    });
+  });
+})();
+
+// ---- Nav name shrink on scroll (subtle) ----
+(function(){
+  var nav=document.querySelector('.nav');
+  var last=0;
+  window.addEventListener('scroll',function(){
+    var y=window.scrollY;
+    nav.style.opacity = (y>10 && y>last) ? '0.0' : '1';
+    nav.style.pointerEvents = nav.style.opacity==='0' ? 'none' : 'auto';
+    nav.style.transition='opacity .4s var(--ease)';
+    last=y;
+  },{passive:true});
+})();
+</script>
+
+</body>
+</html>
