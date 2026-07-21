@@ -136,10 +136,12 @@ body::before{
 .preview.show{opacity:1;}
 .preview .pane{position:absolute;inset:0;opacity:0;display:flex;align-items:center;justify-content:center;transition:opacity .3s var(--ease);}
 .preview .pane.active{opacity:1;}
-.preview .glyph{font-size:74px;filter:drop-shadow(0 8px 18px rgba(0,0,0,.25));}
+.preview .pane img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
+.preview .frame{position:absolute;inset:0;border-radius:10px;pointer-events:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.14);}
 .pane.cadence{background:linear-gradient(135deg,#5B6CF0,#9A6BE8);}
 .pane.vital{background:linear-gradient(135deg,#0E9E9C,#37B98A);}
 .pane.rewards{background:linear-gradient(135deg,#C9503C,#8C2F45);}
+.pane.moonbeam{background:linear-gradient(135deg,#4C3A8F,#8B5FBF);}
 
 /* ---------- Career ---------- */
 .career-list{border-top:1px solid var(--line);}
@@ -208,9 +210,11 @@ body::before{
 
 <!-- floating project preview -->
 <div class="preview" id="preview">
-  <div class="pane cadence" data-key="cadence"><span class="glyph">🗓️</span></div>
-  <div class="pane vital" data-key="vital"><span class="glyph">💤</span></div>
-  <div class="pane rewards" data-key="rewards"><span class="glyph">💳</span></div>
+  <div class="pane cadence" data-key="cadence"><img src="assets/cadence.png" alt="Cadence app preview" loading="lazy" decoding="async"></div>
+  <div class="pane vital" data-key="vital"><img src="assets/vital.png" alt="Vital app preview" loading="lazy" decoding="async"></div>
+  <div class="pane rewards" data-key="rewards"><img src="assets/rewards.png" alt="Rewards app preview" loading="lazy" decoding="async"></div>
+  <div class="pane moonbeam" data-key="moonbeam"><img src="assets/moonbeam.png" alt="Moonbeam app preview" loading="lazy" decoding="async"></div>
+  <div class="frame"></div>
 </div>
 
 <nav class="nav">
@@ -275,6 +279,16 @@ body::before{
         <div class="descwrap">
           <span class="cat">Personal Finance</span>
           <p class="desc">Cards, miles &amp; points — explore and compare credit cards, airline miles, and hotel loyalty programs to track and optimize every reward.</p>
+        </div>
+        <span class="go">Live <span class="arw">↗</span></span>
+      </a>
+
+      <a class="project reveal" href="https://moonbeam-fortuneteller.vercel.app/" target="_blank" rel="noopener" data-preview="moonbeam">
+        <span class="num">04</span>
+        <div class="titlewrap"><span class="title">Moonbeam</span></div>
+        <div class="descwrap">
+          <span class="cat">Entertainment &amp; Wellness</span>
+          <p class="desc">A divination studio for personal reflection — tarot spreads, daily horoscopes, Chinese zodiac, and tea leaf readings, framed as a mirror for what you already feel.</p>
         </div>
         <span class="go">Live <span class="arw">↗</span></span>
       </a>
